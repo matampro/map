@@ -17,7 +17,6 @@ struct Map_t{
         compareMapKeyElements compair_key;
         freeMapDataElements free_data;
         freeMapKeyElements free_key;
-
 };
 
 Map mapCreate(copyMapDataElements copyDataElement,
@@ -34,9 +33,10 @@ Map mapCreate(copyMapDataElements copyDataElement,
     map->free_data = freeDataElement;
     map->key_copy = copyKeyElement;
     map->free_key = freeKeyElement;
-    map->counter = NULL;
+    map->counter = 0;
     map->head = malloc(sizeof(Node));
     if (map->head == NULL){
+        free(map);
         return MAP_OUT_OF_MEMORY;
     }
     map->iterator = map->head;
@@ -45,7 +45,7 @@ Map mapCreate(copyMapDataElements copyDataElement,
 }
 
 void mapDestroy(Map map) {
-    MAP_FOREACH(void*, map->head, map){
+    while (map->head->next != NULL){
         Node tmp = map->head->next;
         free(map->head);
         map->head = tmp;
@@ -58,38 +58,67 @@ Map mapCopy(Map map){
     if (new_map == NULL){
         return MAP_OUT_OF_MEMORY;
     }
-    new_map = map;
-    MAP_FOREACH(void*, map->head, map){
-        new_map->head->mapKeyElement = map->head->mapKeyElement;
-        new_map->head->mapDataElement = map->head->mapDataElement;
-        new_map->head->next = map->head->next;
-        new_map->head = new_map->head->next;
-        map->head = map->head->next;
+    new_map=map;
+    new_map->head = malloc(sizeof(Node));
+    if (new_map->head == NULL){
+        return MAP_OUT_OF_MEMORY;
+    }
+    while (map->iterator->next != NULL){
+        Node next_node = malloc(sizeof(Node));
+        if (next_node == NULL){
+            return MAP_OUT_OF_MEMORY;
+        }
+        new_map->iterator->mapKeyElement = map->key_copy(map->head->mapKeyElement);
+        new_map->iterator->mapDataElement = map->data_copy(map->head->mapDataElement);
+        new_map->iterator = new_map->iterator->next;
+        map->iterator = map->iterator->next;
+        new_map->iterator->next = next_node;
     }
 }
 
 int mapGetSize(Map map){
-    printf("%d", map->counter);
+    return map->counter;
 }
 
 bool mapContains(Map map, MapKeyElement element){
-    MAP_FOREACH(void*, map->head, map){
+    while (map->iterator->next != NULL){
         if (map->head->mapKeyElement == element){
             return true;
         }
+        map->iterator = map->iterator->next;
     }
     return false;
 }
 
 MapResult mapPut(Map map, MapKeyElement keyElement, MapDataElement dataElement){
-    MAP_FOREACH(void*, map->head, map){
-        if (compareMapKeyElements(map->head->mapKeyElement, keyElement) >= NULL){
-            map->head->next->mapKeyElement = keyElement;
-            map->head->next->mapDataElement = dataElement;
+    if (map->compair_key(map->iterator->mapKeyElement, keyElement) > NULL) {
+        Node new_node = malloc(sizeof(Node));
+        if (new_node == NULL) {
+            return MAP_OUT_OF_MEMORY;
+        }
+        map->head = new_node;
+        new_node->mapDataElement = dataElement;
+        new_node->mapKeyElement = keyElement;
+        new_node->next = map->iterator;
+        map->iterator = map->iterator->next;
+        return MAP_SUCCESS;
+    }
+    while (map->iterator->next != NULL){
+        if (map->compair_key(map->iterator->mapKeyElement, keyElement) >= NULL){
+            Node new_node = malloc(sizeof(Node));
+            if (new_node == NULL){
+                return MAP_OUT_OF_MEMORY;
+            }
+            map->head = new_node;
+            new_node->mapDataElement = dataElement;
+            new_node->mapKeyElement = keyElement;
+            new_node->next = map->iterator;
+            map->iterator->next->mapKeyElement = keyElement;
+            map->iterator->next->mapDataElement = dataElement;
             return MAP_SUCCESS;
         }
     }
-    return NULL;
+    return MAP_NULL_ARGUMENT;
 }
 
 MapDataElement mapGet(Map map, MapKeyElement keyElement){
@@ -103,8 +132,10 @@ MapDataElement mapGet(Map map, MapKeyElement keyElement){
 
 MapResult mapRemove(Map map, MapKeyElement keyElement) {
     MAP_FOREACH(void*, &map->iterator, map){
-        if (compareMapKeyElements(map->head->mapKeyElement, keyElement) == keyElement) {
-            return map->iterator->mapKeyElement = NULL;
+        if (map->compair_key(map->head->mapKeyElement, keyElement) {
+            // to remove the node and connect the befor and after nodes//
+            map->iterator->mapKeyElement = NULL;
+            map->iterator->mapDataElement = NULL;
         }
     }
     return MAP_ITEM_DOES_NOT_EXIST;
@@ -112,8 +143,7 @@ MapResult mapRemove(Map map, MapKeyElement keyElement) {
 
 
 MapKeyElement mapGetFirst(Map map) {
-    map->iterator = map->head;
-    return map->iterator->mapKeyElement;
+    return map->head->mapKeyElement;
 }
 
 MapKeyElement mapGetNext(Map map){
@@ -122,7 +152,7 @@ MapKeyElement mapGetNext(Map map){
 }
 
 MapResult mapClear(Map map){
-    while(map->head->next != NULL) {
+    while (map->head->next != NULL){
         Node tmp = map->head->next;
         free(map->head);
         map->head = tmp;
