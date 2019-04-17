@@ -61,19 +61,20 @@ Map mapCopy(Map map){
     new_map=map;
     new_map->head = malloc(sizeof(Node));
     if (new_map->head == NULL){
-        mapDestroy(map);
+        mapDestroy(new_map);
         return MAP_OUT_OF_MEMORY;
     }
     while (map->iterator->next != NULL){
         Node next_node = malloc(sizeof(Node));
         if (next_node == NULL){
+            mapDestroy(new_map);
             return MAP_OUT_OF_MEMORY;
         }
         new_map->iterator->mapKeyElement = map->key_copy(map->head->mapKeyElement);
         new_map->iterator->mapDataElement = map->data_copy(map->head->mapDataElement);
         new_map->iterator = new_map->iterator->next;
         map->iterator = map->iterator->next;
-        new_map->iterator->next = next_node;
+        new_map->iterator->next = NULL;
     }
     return MAP_SUCCESS;
 }
@@ -102,7 +103,7 @@ MapResult mapPut(Map map, MapKeyElement keyElement, MapDataElement dataElement){
         new_node->mapDataElement = dataElement;
         new_node->mapKeyElement = keyElement;
         new_node->next = map->iterator;
-        map->iterator = map->iterator->next;
+        map->iterator = map->iterator->next; //why ??
         return MAP_SUCCESS;
     }
     while (map->iterator->next != NULL){
@@ -125,7 +126,7 @@ MapResult mapPut(Map map, MapKeyElement keyElement, MapDataElement dataElement){
 
 MapDataElement mapGet(Map map, MapKeyElement keyElement){
     MAP_FOREACH(void*, &map->iterator, map){
-        if (compareMapKeyElements(map->head->mapKeyElement, keyElement) == keyElement){
+        if (compareMapKeyElements(map->iterator->mapKeyElement, keyElement) == 0){
             return map->iterator->mapDataElement;
         }
     }
