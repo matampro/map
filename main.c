@@ -145,7 +145,8 @@ MapResult mapRemove(Map map, MapKeyElement keyElement) {
 
 
 MapKeyElement mapGetFirst(Map map) {
-    return map->head->mapKeyElement;
+    map->iterator = map->head;
+    return map->itarator->mapKeyElement;
 }
 
 MapKeyElement mapGetNext(Map map){
