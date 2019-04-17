@@ -61,6 +61,7 @@ Map mapCopy(Map map){
     new_map=map;
     new_map->head = malloc(sizeof(Node));
     if (new_map->head == NULL){
+        mapDestroy(map);
         return MAP_OUT_OF_MEMORY;
     }
     while (map->iterator->next != NULL){
