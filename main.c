@@ -61,6 +61,7 @@ Map mapCopy(Map map){
     new_map=map;
     new_map->head = malloc(sizeof(Node));
     if (new_map->head == NULL){
+        mapDestroy(map);
         return MAP_OUT_OF_MEMORY;
     }
     while (map->iterator->next != NULL){
@@ -74,6 +75,7 @@ Map mapCopy(Map map){
         map->iterator = map->iterator->next;
         new_map->iterator->next = next_node;
     }
+    return MAP_SUCCESS;
 }
 
 int mapGetSize(Map map){
