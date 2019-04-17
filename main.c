@@ -69,8 +69,8 @@ Map mapCopy(Map map){
         if (next_node == NULL){
             return MAP_OUT_OF_MEMORY;
         }
-        new_map->iterator->mapKeyElement = map->key_copy(map->head->mapKeyElement);
-        new_map->iterator->mapDataElement = map->data_copy(map->head->mapDataElement);
+        new_map->iterator->mapKeyElement = map->key_copy(map->iterator->mapKeyElement);
+        new_map->iterator->mapDataElement = map->data_copy(map->iterator->mapDataElement);
         new_map->iterator = new_map->iterator->next;
         map->iterator = map->iterator->next;
         new_map->iterator->next = next_node;
@@ -92,8 +92,25 @@ bool mapContains(Map map, MapKeyElement element){
     return false;
 }
 
-MapResult mapPut(Map map, MapKeyElement keyElement, MapDataElement dataElement){
-    if (map->compair_key(map->iterator->mapKeyElement, keyElement) > NULL) {
+MapResult mapPut(Map map, MapKeyElement keyElement, MapDataElement dataElement) {
+    if (map->compair_key(map->head->mapKeyElement, keyElement) > 0) {
+        
+    }
+    for (map->iterator = map->head; map->iterator->next; map->iterator = map->iterator->next) {
+
+        if (map->compair_key(map->iterator->mapKeyElement, keyElement) == 0) {
+            map->iterator->mapDataElement = dataElement;
+            map->iterator->mapKeyElement = keyElement;
+            return MAP_SUCCESS;
+        }
+        if (map->compair_key(map->iterator->mapKeyElement, keyElement) > 0) {
+            createNewNode(map, keyElement, dataElement, map->iterator);
+        }
+    }
+    createNewNode(map, keyElement, dataElement, map->iterator);
+}
+
+void* createNewNode(Map map, MapKeyElement keyElement, MapDataElement dataElement, Node current_node){
         Node new_node = malloc(sizeof(Node));
         if (new_node == NULL) {
             return MAP_OUT_OF_MEMORY;
@@ -101,12 +118,13 @@ MapResult mapPut(Map map, MapKeyElement keyElement, MapDataElement dataElement){
         map->head = new_node;
         new_node->mapDataElement = dataElement;
         new_node->mapKeyElement = keyElement;
-        new_node->next = map->iterator;
-        map->iterator = map->iterator->next;
+        new_node->next = map->iterator->next;
         return MAP_SUCCESS;
     }
+    map->iterator = map->iterator->next;
+    map->counter++;
     while (map->iterator->next != NULL){
-        if (map->compair_key(map->iterator->mapKeyElement, keyElement) >= NULL){
+        if (map->compair_key(map->iterator->mapKeyElement, keyElement) == 0){
             Node new_node = malloc(sizeof(Node));
             if (new_node == NULL){
                 return MAP_OUT_OF_MEMORY;
@@ -124,7 +142,7 @@ MapResult mapPut(Map map, MapKeyElement keyElement, MapDataElement dataElement){
 }
 
 MapDataElement mapGet(Map map, MapKeyElement keyElement){
-    MAP_FOREACH(void*, &map->iterator, map){
+    while (map->iterator != NULL){
         if (compareMapKeyElements(map->head->mapKeyElement, keyElement) == keyElement){
             return map->iterator->mapDataElement;
         }
@@ -133,12 +151,13 @@ MapDataElement mapGet(Map map, MapKeyElement keyElement){
 }
 
 MapResult mapRemove(Map map, MapKeyElement keyElement) {
-    MAP_FOREACH(void*, &map->iterator, map){
-        if (map->compair_key(map->head->mapKeyElement, keyElement) {
-            // to remove the node and connect the befor and after nodes//
-            map->iterator->mapKeyElement = NULL;
-            map->iterator->mapDataElement = NULL;
+    while (map->iterator->next != NULL){
+        if (map->compair_key(map->iterator->next->mapKeyElement, keyElement) {
+            Node temp = map->iterator->next->next;
+            free(map->iterator->next)
+            map->iterator->next = temp;
         }
+        map->iterator = map->iterator->next;
     }
     return MAP_ITEM_DOES_NOT_EXIST;
 }
@@ -160,24 +179,3 @@ MapResult mapClear(Map map){
         map->head = tmp;
     }
 }
-
-//WE NEED TO WRIGHT TILL HERE//
-MapDataElement copyMapDataElements(MapDataElement){
-
-}
-
-MapKeyElement copyMapKeyElements(MapKeyElement){
-
-}
-
-freeMapDataElements(MapDataElement){
-
-}
-freeMapKeyElements(MapKeyElement){
-
-}
-
-int compareMapKeyElements(MapKeyElement, MapKeyElement){
-
-}
-
