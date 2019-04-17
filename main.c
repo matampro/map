@@ -74,6 +74,7 @@ Map mapCopy(Map map){
         map->iterator = map->iterator->next;
         new_map->iterator->next = next_node;
     }
+    return MAP_SUCCESS;
 }
 
 int mapGetSize(Map map){
