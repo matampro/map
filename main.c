@@ -61,19 +61,20 @@ Map mapCopy(Map map){
     new_map=map;
     new_map->head = malloc(sizeof(Node));
     if (new_map->head == NULL){
-        mapDestroy(map);
+        mapDestroy(new_map);
         return MAP_OUT_OF_MEMORY;
     }
     while (map->iterator->next != NULL){
         Node next_node = malloc(sizeof(Node));
         if (next_node == NULL){
+            mapDestroy(new_map);
             return MAP_OUT_OF_MEMORY;
         }
         new_map->iterator->mapKeyElement = map->key_copy(map->iterator->mapKeyElement);
         new_map->iterator->mapDataElement = map->data_copy(map->iterator->mapDataElement);
         new_map->iterator = new_map->iterator->next;
         map->iterator = map->iterator->next;
-        new_map->iterator->next = next_node;
+        new_map->iterator->next = NULL;
     }
     return MAP_SUCCESS;
 }
@@ -94,7 +95,9 @@ bool mapContains(Map map, MapKeyElement element){
 
 MapResult mapPut(Map map, MapKeyElement keyElement, MapDataElement dataElement) {
     if (map->compair_key(map->head->mapKeyElement, keyElement) > 0) {
-        
+        createNewNode(Node new_node);
+        map->head = new_node;
+
     }
     for (map->iterator = map->head; map->iterator->next; map->iterator = map->iterator->next) {
 
@@ -118,7 +121,9 @@ void* createNewNode(Map map, MapKeyElement keyElement, MapDataElement dataElemen
         map->head = new_node;
         new_node->mapDataElement = dataElement;
         new_node->mapKeyElement = keyElement;
-        new_node->next = map->iterator->next;
+
+        new_node->next = map->iterator;
+        map->iterator = map->iterator->next; //why ??
         return MAP_SUCCESS;
     }
     map->iterator = map->iterator->next;
@@ -143,7 +148,7 @@ void* createNewNode(Map map, MapKeyElement keyElement, MapDataElement dataElemen
 
 MapDataElement mapGet(Map map, MapKeyElement keyElement){
     while (map->iterator != NULL){
-        if (compareMapKeyElements(map->head->mapKeyElement, keyElement) == keyElement){
+        if (compareMapKeyElements(map->iterator->mapKeyElement, keyElement) == 0){
             return map->iterator->mapDataElement;
         }
     }
@@ -164,7 +169,8 @@ MapResult mapRemove(Map map, MapKeyElement keyElement) {
 
 
 MapKeyElement mapGetFirst(Map map) {
-    return map->head->mapKeyElement;
+    map->iterator = map->head;
+    return map->itarator->mapKeyElement;
 }
 
 MapKeyElement mapGetNext(Map map){
