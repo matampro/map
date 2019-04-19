@@ -47,10 +47,10 @@ RM = "C:\Program Files\JetBrains\CLion 2018.3.4\bin\cmake\win\bin\cmake.exe" -E 
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = E:\Documents\studies\mtm\hw-1\map
+CMAKE_SOURCE_DIR = C:\Users\Ayala\Documents\GitHub\map
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = E:\Documents\studies\mtm\hw-1\map\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\Ayala\Documents\GitHub\map\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -79,9 +79,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start E:\Documents\studies\mtm\hw-1\map\cmake-build-debug\CMakeFiles E:\Documents\studies\mtm\hw-1\map\cmake-build-debug\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Ayala\Documents\GitHub\map\cmake-build-debug\CMakeFiles C:\Users\Ayala\Documents\GitHub\map\cmake-build-debug\CMakeFiles\progress.marks
 	$(MAKE) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start E:\Documents\studies\mtm\hw-1\map\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Ayala\Documents\GitHub\map\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -149,6 +149,33 @@ main.c.s:
 	$(MAKE) -f CMakeFiles\map.dir\build.make CMakeFiles/map.dir/main.c.s
 .PHONY : main.c.s
 
+map.obj: map.c.obj
+
+.PHONY : map.obj
+
+# target to build an object file
+map.c.obj:
+	$(MAKE) -f CMakeFiles\map.dir\build.make CMakeFiles/map.dir/map.c.obj
+.PHONY : map.c.obj
+
+map.i: map.c.i
+
+.PHONY : map.i
+
+# target to preprocess a source file
+map.c.i:
+	$(MAKE) -f CMakeFiles\map.dir\build.make CMakeFiles/map.dir/map.c.i
+.PHONY : map.c.i
+
+map.s: map.c.s
+
+.PHONY : map.s
+
+# target to generate assembly for a file
+map.c.s:
+	$(MAKE) -f CMakeFiles\map.dir\build.make CMakeFiles/map.dir/map.c.s
+.PHONY : map.c.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -161,6 +188,9 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... map.obj
+	@echo ... map.i
+	@echo ... map.s
 .PHONY : help
 
 

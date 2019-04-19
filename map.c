@@ -93,10 +93,59 @@ bool mapContains(Map map, MapKeyElement element){
     }
     return false;
 }
+/*void* createNewNode(Map map, MapKeyElement keyElement, MapDataElement dataElement, Node current_node){
+    Node new_node = malloc(sizeof(*Node));
+    if (new_node == NULL) {
+        return MAP_OUT_OF_MEMORY;
+    }
+    map->head = new_node;
+    new_node->mapDataElement = dataElement;
+    new_node->mapKeyElement = keyElement;
 
+    new_node->next = map->iterator;
+    map->iterator = map->iterator->next; //why ??
+    return MAP_SUCCESS;
+}
+map->iterator = map->iterator->next;
+map->counter++;
+while (map->iterator->next != NULL){
+if (map->compair_key(map->iterator->mapKeyElement, keyElement) == 0){
+Node new_node = malloc(sizeof(Node));
+if (new_node == NULL){
+return MAP_OUT_OF_MEMORY;
+}
+map->head = new_node;
+new_node->mapDataElement = dataElement;
+new_node->mapKeyElement = keyElement;
+new_node->next = map->iterator;
+map->iterator->next->mapKeyElement = keyElement;
+map->iterator->next->mapDataElement = dataElement;
+return MAP_SUCCESS;
+}
+}
+return MAP_NULL_ARGUMENT;
+}
+*/
+MapResult createNewNode(Node new_node,MapKeyElement keyElement, MapDataElement dataElement){
+     new_node = malloc(sizeof(struct node_t));
+    if (new_node == NULL) {
+        return MAP_OUT_OF_MEMORY;
+    }else{
+        new_node->mapDataElement = dataElement;
+        new_node->mapKeyElement = keyElement;
+    }
+    return MAP_SUCCESS;
+}
+void addNewNodeAfterNode(Node new_node ,Node prevIterator) {
+    new_node->next =  prevIterator->next;
+    prevIterator->next =new_node;
+}
+/*void addNewNodeBefore(Node new_node ,Node prevIterator) { // add new node at the beginning
+    new_node->next =  prevIterator->next;
+    prevIterator->next =new_node;
+}*/
 MapResult mapPut(Map map, MapKeyElement keyElement, MapDataElement dataElement) {
     Node new_node;
-
     Node prevIterator = NULL;
     for (map->iterator = map->head; map->iterator->next != NULL; map->iterator = map->iterator->next) {
 
@@ -106,58 +155,34 @@ MapResult mapPut(Map map, MapKeyElement keyElement, MapDataElement dataElement) 
             return MAP_SUCCESS;
         }
         if (map->compare_key(map->iterator->mapKeyElement, keyElement) > 0 &&
-                map->iterator->next == NULL) {/// end of queue
-
-            createNewNode(new_node);
-            addNewNodeAfterNode(new_node ,map->iterator);
+                map->iterator->next == NULL) {/// end of list
+            if (createNewNode(new_node, keyElement, dataElement)== MAP_OUT_OF_MEMORY){
+                return MAP_OUT_OF_MEMORY;
+            }else{
+                addNewNodeAfterNode(new_node ,map->iterator);
+                return MAP_SUCCESS;
+            }
         }
         if (map->compare_key(map->iterator->mapKeyElement, keyElement) < 0  ) {
             if( prevIterator != NULL){///middle of queue
-                createNewNode(new_node);
-                addNewNodeAfterNode(new_node ,prevIterator);
+                if (createNewNode(new_node, keyElement, dataElement)== MAP_OUT_OF_MEMORY){
+                    return MAP_OUT_OF_MEMORY;
+                }else{
+                    addNewNodeAfterNode(new_node ,map->iterator);
+                    return MAP_SUCCESS;
+                }
             }else{///start of queue
-                createNewNode(new_node);
-                addNewNodeBeforeHead(new_node ,map->head);
+                if (createNewNode(new_node, keyElement, dataElement)== MAP_OUT_OF_MEMORY){
+                    return MAP_OUT_OF_MEMORY;
+                }else{
+                    addNewNodeAfterNode(new_node ,map->head);
+                    return MAP_SUCCESS;
+                }
             }
         }
-
-
         prevIterator = map->iterator;
     }
-
-}
-
-void* createNewNode(Map map, MapKeyElement keyElement, MapDataElement dataElement, Node current_node){
-        Node new_node = malloc(sizeof(Node));
-        if (new_node == NULL) {
-            return MAP_OUT_OF_MEMORY;
-        }
-        map->head = new_node;
-        new_node->mapDataElement = dataElement;
-        new_node->mapKeyElement = keyElement;
-
-        new_node->next = map->iterator;
-        map->iterator = map->iterator->next; //why ??
-        return MAP_SUCCESS;
-    }
-    map->iterator = map->iterator->next;
-    map->counter++;
-    while (map->iterator->next != NULL){
-        if (map->compair_key(map->iterator->mapKeyElement, keyElement) == 0){
-            Node new_node = malloc(sizeof(Node));
-            if (new_node == NULL){
-                return MAP_OUT_OF_MEMORY;
-            }
-            map->head = new_node;
-            new_node->mapDataElement = dataElement;
-            new_node->mapKeyElement = keyElement;
-            new_node->next = map->iterator;
-            map->iterator->next->mapKeyElement = keyElement;
-            map->iterator->next->mapDataElement = dataElement;
-            return MAP_SUCCESS;
-        }
-    }
-    return MAP_NULL_ARGUMENT;
+    return MAP_NULL_ARGUMENT; //should not get here
 }
 
 MapDataElement mapGet(Map map, MapKeyElement keyElement){
@@ -166,7 +191,7 @@ MapDataElement mapGet(Map map, MapKeyElement keyElement){
             return map->iterator->mapDataElement;
         }
     }
-    return MAP_ITEM_DOES_NOT_EXIST;
+    return NULL; // MAP_ITEM_DOES_NOT_EXIST
 }
 
 MapResult mapRemove(Map map, MapKeyElement keyElement) {
