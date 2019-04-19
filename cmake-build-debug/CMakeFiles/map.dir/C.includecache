@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+E:/Documents/studies/mtm/hw-1/map/map.c
+stdio.h
+-
+map.h
+E:/Documents/studies/mtm/hw-1/map/map.h
+stdlib.h
+-
+
+E:/Documents/studies/mtm/hw-1/map/map.h
+stdbool.h
+-
+

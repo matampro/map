@@ -56,27 +56,27 @@ include CMakeFiles/map.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/map.dir/flags.make
 
-CMakeFiles/map.dir/main.c.obj: CMakeFiles/map.dir/flags.make
-CMakeFiles/map.dir/main.c.obj: ../main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\Documents\studies\mtm\hw-1\map\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/map.dir/main.c.obj"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\map.dir\main.c.obj   -c E:\Documents\studies\mtm\hw-1\map\main.c
+CMakeFiles/map.dir/map.c.obj: CMakeFiles/map.dir/flags.make
+CMakeFiles/map.dir/map.c.obj: ../map.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\Documents\studies\mtm\hw-1\map\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/map.dir/map.c.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\map.dir\map.c.obj   -c E:\Documents\studies\mtm\hw-1\map\map.c
 
-CMakeFiles/map.dir/main.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/map.dir/main.c.i"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E E:\Documents\studies\mtm\hw-1\map\main.c > CMakeFiles\map.dir\main.c.i
+CMakeFiles/map.dir/map.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/map.dir/map.c.i"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E E:\Documents\studies\mtm\hw-1\map\map.c > CMakeFiles\map.dir\map.c.i
 
-CMakeFiles/map.dir/main.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/map.dir/main.c.s"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S E:\Documents\studies\mtm\hw-1\map\main.c -o CMakeFiles\map.dir\main.c.s
+CMakeFiles/map.dir/map.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/map.dir/map.c.s"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S E:\Documents\studies\mtm\hw-1\map\map.c -o CMakeFiles\map.dir\map.c.s
 
 # Object files for target map
 map_OBJECTS = \
-"CMakeFiles/map.dir/main.c.obj"
+"CMakeFiles/map.dir/map.c.obj"
 
 # External object files for target map
 map_EXTERNAL_OBJECTS =
 
-map.exe: CMakeFiles/map.dir/main.c.obj
+map.exe: CMakeFiles/map.dir/map.c.obj
 map.exe: CMakeFiles/map.dir/build.make
 map.exe: CMakeFiles/map.dir/linklibs.rsp
 map.exe: CMakeFiles/map.dir/objects1.rsp

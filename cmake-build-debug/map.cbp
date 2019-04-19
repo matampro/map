@@ -74,7 +74,10 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="E:/Documents/studies/mtm/hw-1/map/main.c">
+		<Unit filename="E:/Documents/studies/mtm/hw-1/map/map.c">
+			<Option target="map"/>
+		</Unit>
+		<Unit filename="E:/Documents/studies/mtm/hw-1/map/map.h">
 			<Option target="map"/>
 		</Unit>
 		<Unit filename="E:/Documents/studies/mtm/hw-1/map/CMakeLists.txt">

@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/map.dir/main.c.obj"
+  "CMakeFiles/map.dir/map.c.obj"
   "map.pdb"
   "map.exe"
   "map.exe.manifest"

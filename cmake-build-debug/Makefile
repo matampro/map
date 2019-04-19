@@ -122,32 +122,32 @@ map/fast:
 	$(MAKE) -f CMakeFiles\map.dir\build.make CMakeFiles/map.dir/build
 .PHONY : map/fast
 
-main.obj: main.c.obj
+map.obj: map.c.obj
 
-.PHONY : main.obj
+.PHONY : map.obj
 
 # target to build an object file
-main.c.obj:
-	$(MAKE) -f CMakeFiles\map.dir\build.make CMakeFiles/map.dir/main.c.obj
-.PHONY : main.c.obj
+map.c.obj:
+	$(MAKE) -f CMakeFiles\map.dir\build.make CMakeFiles/map.dir/map.c.obj
+.PHONY : map.c.obj
 
-main.i: main.c.i
+map.i: map.c.i
 
-.PHONY : main.i
+.PHONY : map.i
 
 # target to preprocess a source file
-main.c.i:
-	$(MAKE) -f CMakeFiles\map.dir\build.make CMakeFiles/map.dir/main.c.i
-.PHONY : main.c.i
+map.c.i:
+	$(MAKE) -f CMakeFiles\map.dir\build.make CMakeFiles/map.dir/map.c.i
+.PHONY : map.c.i
 
-main.s: main.c.s
+map.s: map.c.s
 
-.PHONY : main.s
+.PHONY : map.s
 
 # target to generate assembly for a file
-main.c.s:
-	$(MAKE) -f CMakeFiles\map.dir\build.make CMakeFiles/map.dir/main.c.s
-.PHONY : main.c.s
+map.c.s:
+	$(MAKE) -f CMakeFiles\map.dir\build.make CMakeFiles/map.dir/map.c.s
+.PHONY : map.c.s
 
 # Help Target
 help:
@@ -158,9 +158,9 @@ help:
 	@echo ... map
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... main.obj
-	@echo ... main.i
-	@echo ... main.s
+	@echo ... map.obj
+	@echo ... map.i
+	@echo ... map.s
 .PHONY : help
 
 

@@ -25,9 +25,9 @@ Map mapCreate(copyMapDataElements copyDataElement,
               freeMapDataElements freeDataElement,
               freeMapKeyElements freeKeyElement,
               compareMapKeyElements compareKeyElements) {
-    Map map = malloc(sizeof(Map));
+    Map map = malloc(sizeof(*map));
     if (map == NULL){
-        return MAP_OUT_OF_MEMORY;
+        return NULL;
     }
     map->data_copy = copyDataElement;
     map->compair_key = compareKeyElements;
@@ -38,7 +38,7 @@ Map mapCreate(copyMapDataElements copyDataElement,
     map->head = malloc(sizeof(Node));
     if (map->head == NULL){
         free(map);
-        return MAP_OUT_OF_MEMORY;
+        return NULL;
     }
     map->tail = map->head;
     map->head->next = NULL;
@@ -59,7 +59,7 @@ Map mapCopy(Map map){
     if (new_map == NULL){
         return NULL;
     }
-    new_map = map;
+    *new_map = *map;
     new_map->head = malloc(sizeof(Node));
     if (new_map->head == NULL){
         mapDestroy(new_map);
@@ -127,7 +127,7 @@ MapResult mapRemove(Map map, MapKeyElement keyElement) {
     for (map->tail = map->head; map->tail->next; map->tail = map->tail->next) {
         if (map->compair_key(map->tail->next->mapKeyElement, keyElement) == 0) {
             Node tmp = map->tail->next->next;
-            free(map->tail->next)
+            free(map->tail->next);
             map->tail->next = tmp;
         }
     }

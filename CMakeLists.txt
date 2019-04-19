@@ -3,4 +3,4 @@ project(map C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(map main.c)
+add_executable(map map.c)
