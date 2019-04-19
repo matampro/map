@@ -4,3 +4,7 @@
 CMakeFiles/map.dir/map.c.obj: ../map.c
 CMakeFiles/map.dir/map.c.obj: ../map.h
 
+CMakeFiles/map.dir/map_example_test.c.obj: ../map.h
+CMakeFiles/map.dir/map_example_test.c.obj: ../map_example_test.c
+CMakeFiles/map.dir/map_example_test.c.obj: ../test_utilities.h
+

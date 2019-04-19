@@ -74,10 +74,19 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="E:/Documents/studies/mtm/hw-1/map/cmake-build-debug">
+			<Option target="map"/>
+		</Unit>
 		<Unit filename="E:/Documents/studies/mtm/hw-1/map/map.c">
 			<Option target="map"/>
 		</Unit>
 		<Unit filename="E:/Documents/studies/mtm/hw-1/map/map.h">
+			<Option target="map"/>
+		</Unit>
+		<Unit filename="E:/Documents/studies/mtm/hw-1/map/map_example_test.c">
+			<Option target="map"/>
+		</Unit>
+		<Unit filename="E:/Documents/studies/mtm/hw-1/map/test_utilities.h">
 			<Option target="map"/>
 		</Unit>
 		<Unit filename="E:/Documents/studies/mtm/hw-1/map/CMakeLists.txt">

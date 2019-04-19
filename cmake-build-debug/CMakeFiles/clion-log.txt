@@ -1,7 +1,4 @@
 "C:\Program Files\JetBrains\CLion 2018.3.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" E:\Documents\studies\mtm\hw-1\map
 -- Configuring done
-CMake Error at CMakeLists.txt:7 (add_executable):
-  No SOURCES given to target: map_exemple_test.c
-
-
+-- Generating done
 -- Build files have been written to: E:/Documents/studies/mtm/hw-1/map/cmake-build-debug

@@ -149,6 +149,33 @@ map.c.s:
 	$(MAKE) -f CMakeFiles\map.dir\build.make CMakeFiles/map.dir/map.c.s
 .PHONY : map.c.s
 
+map_example_test.obj: map_example_test.c.obj
+
+.PHONY : map_example_test.obj
+
+# target to build an object file
+map_example_test.c.obj:
+	$(MAKE) -f CMakeFiles\map.dir\build.make CMakeFiles/map.dir/map_example_test.c.obj
+.PHONY : map_example_test.c.obj
+
+map_example_test.i: map_example_test.c.i
+
+.PHONY : map_example_test.i
+
+# target to preprocess a source file
+map_example_test.c.i:
+	$(MAKE) -f CMakeFiles\map.dir\build.make CMakeFiles/map.dir/map_example_test.c.i
+.PHONY : map_example_test.c.i
+
+map_example_test.s: map_example_test.c.s
+
+.PHONY : map_example_test.s
+
+# target to generate assembly for a file
+map_example_test.c.s:
+	$(MAKE) -f CMakeFiles\map.dir\build.make CMakeFiles/map.dir/map_example_test.c.s
+.PHONY : map_example_test.c.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -161,6 +188,9 @@ help:
 	@echo ... map.obj
 	@echo ... map.i
 	@echo ... map.s
+	@echo ... map_example_test.obj
+	@echo ... map_example_test.i
+	@echo ... map_example_test.s
 .PHONY : help
 
 

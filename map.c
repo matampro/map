@@ -93,7 +93,54 @@ bool mapContains(Map map, MapKeyElement element){
     }
     return false;
 }
+MapResult createNewNode(Node new_node,MapKeyElement keyElement, MapDataElement dataElement){
+    new_node = malloc(sizeof(struct node_t));
+    if (new_node == NULL) {
+        return MAP_OUT_OF_MEMORY;
+    }else{
+        new_node->mapDataElement = dataElement;
+        new_node->mapKeyElement = keyElement;
+    }
+    return MAP_SUCCESS;
+}
+void addNewNodeAfterNode(Node new_node ,Node previousNode) {
+    Node temp = previousNode->next;
+    previousNode->next =new_node;
+    new_node->next =  temp;
+}
+void addNewNodeBeforeNode(Node new_node ,Node previousNode) { // add new node at the beginning
+    new_node->next =  previousNode->next;
+    previousNode->next =new_node;
+}
+MapResult mapPut(Map map, MapKeyElement keyElement, MapDataElement dataElement) {
+    Node new_node;
+    Node previousNode = NULL;
+    for (map->tail = map->head; map->tail->next; map->tail = map->tail->next) {
+        if (map->compair_key(map->tail->next->mapKeyElement, keyElement) == 0) {//swap data
+            map->tail->next->mapDataElement = dataElement;
+            map->tail->next->mapKeyElement = keyElement;
+            return MAP_SUCCESS;
+        }
+        if (map->compair_key(map->tail->next->mapKeyElement, keyElement) < 0) {
+            if (createNewNode(new_node, keyElement, dataElement) == MAP_OUT_OF_MEMORY) {
+                return MAP_OUT_OF_MEMORY;
+            } else {
+                addNewNodeBeforeNode(new_node, map->tail->next);
+                return MAP_SUCCESS;
+            }
+        }
+        if (createNewNode(new_node, keyElement, dataElement) == MAP_OUT_OF_MEMORY) { /// end of list
+                return MAP_OUT_OF_MEMORY;
+        } else {
+                addNewNodeAfterNode(new_node, map->tail->next);
+                return MAP_SUCCESS;
+        }
+    }
+}
 
+
+
+/*
 MapResult mapPut(Map map, MapKeyElement keyElement, MapDataElement dataElement) {
     for (map->tail = map->head; map->tail->next; map->tail = map->tail->next) {
         if (map->compair_key(map->tail->next->mapKeyElement, keyElement) == 0) {
@@ -106,14 +153,31 @@ MapResult mapPut(Map map, MapKeyElement keyElement, MapDataElement dataElement) 
             if (new_node == NULL) {
                 return MAP_OUT_OF_MEMORY;
             }
+            map->counter++;
             new_node->next = map->tail->next;
             new_node->mapDataElement = dataElement;
             new_node->mapKeyElement = keyElement;
             map->tail->next = new_node;
+            return MAP_SUCCESS;
+        }
+        if (map->compair_key(map->tail->mapKeyElement, keyElement) > 0 &&
+            map->tail->next == NULL){
+            Node new_node = malloc(sizeof(Node));
+            if (new_node == NULL) {
+                return MAP_OUT_OF_MEMORY;
+            }
+            map->counter++;
+            new_node->next = NULL;
+            new_node->mapDataElement = dataElement;
+            new_node->mapKeyElement = keyElement;
+            map->tail->next = new_node;
+            return MAP_SUCCESS;
+
         }
     }
 }
 
+*/
 MapDataElement mapGet(Map map, MapKeyElement keyElement){
     for (map->tail = map->head->next; map->tail->next; map->tail = map->tail->next) {
         if (map->compair_key(map->tail->mapKeyElement, keyElement) == 0){
@@ -124,18 +188,26 @@ MapDataElement mapGet(Map map, MapKeyElement keyElement){
 }
 
 MapResult mapRemove(Map map, MapKeyElement keyElement) {
+    int flag = 0; // We check if the item is found//
     for (map->tail = map->head; map->tail->next; map->tail = map->tail->next) {
         if (map->compair_key(map->tail->next->mapKeyElement, keyElement) == 0) {
+            flag = 1;
             Node tmp = map->tail->next->next;
             free(map->tail->next);
             map->tail->next = tmp;
+            map->counter--;
         }
     }
-    return MAP_ITEM_DOES_NOT_EXIST;
+    if (flag == 0){
+        return MAP_ITEM_DOES_NOT_EXIST;
+    }
 }
 
 MapKeyElement mapGetFirst(Map map) {
-    map->tail = map->head;
+    if (map->head->next == NULL){
+        return NULL;
+    }
+    map->tail = map->head->next;
     return map->tail->mapKeyElement;
 }
 
