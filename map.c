@@ -114,7 +114,6 @@ void addNewNodeBeforeNode(Node new_node ,Node previousNode) { // add new node at
 }
 MapResult mapPut(Map map, MapKeyElement keyElement, MapDataElement dataElement) {
     Node new_node;
-    Node previousNode = NULL;
     for (map->tail = map->head; map->tail->next; map->tail = map->tail->next) {
         if (map->compair_key(map->tail->next->mapKeyElement, keyElement) == 0) {//swap data
             map->tail->next->mapDataElement = dataElement;
@@ -125,16 +124,22 @@ MapResult mapPut(Map map, MapKeyElement keyElement, MapDataElement dataElement) 
             if (createNewNode(new_node, keyElement, dataElement) == MAP_OUT_OF_MEMORY) {
                 return MAP_OUT_OF_MEMORY;
             } else {
+                map->counter++;
                 addNewNodeBeforeNode(new_node, map->tail->next);
                 return MAP_SUCCESS;
             }
         }
-        if (createNewNode(new_node, keyElement, dataElement) == MAP_OUT_OF_MEMORY) { /// end of list
+
+        if (map->compair_key(map->tail->next->mapKeyElement, keyElement) > 0){
+            if (createNewNode(new_node, keyElement, dataElement) == MAP_OUT_OF_MEMORY) { /// end of list
                 return MAP_OUT_OF_MEMORY;
-        } else {
+            } else {
+                map->counter++;
                 addNewNodeAfterNode(new_node, map->tail->next);
                 return MAP_SUCCESS;
+            }
         }
+
     }
 }
 
