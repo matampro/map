@@ -7,7 +7,6 @@ typedef struct node_t{
     MapDataElement mapDataElement;
     MapKeyElement mapKeyElement;
     struct node_t* next;
-    struct node_t* previous;
 } *Node;
 
 struct Map_t{
@@ -36,15 +35,14 @@ Map mapCreate(copyMapDataElements copyDataElement,
     map->key_copy = copyKeyElement;
     map->free_key = freeKeyElement;
     map->counter = 0;
-    map->head = NULL;        //*null
+    map->head = NULL;
     map->tail = NULL;
 
     return map;
 }
 
 void mapDestroy(Map map) {
-
-    if(map->head !=NULL) {
+    if(map->head != NULL) {
         while (map->head->next != NULL) {
             Node tmp = map->head->next;
             map->free_data(map->head->mapDataElement);
@@ -70,20 +68,20 @@ Map mapCopy(Map map){
         return NULL;
     }
     *new_map = *map;
-    new_map->head = malloc(sizeof(*new_map->head )); //*
+    new_map->head = malloc(sizeof(*new_map->head ));
     if (new_map->head == NULL){
         mapDestroy(new_map);
         return NULL;
     }
     new_map->head->mapKeyElement = new_map->head->mapDataElement = NULL;
-    for (map->tail = map->head->next, new_map->tail = new_map->head->next; map->tail->next != NULL /*!=NULL*/
+    for (map->tail = map->head->next, new_map->tail = new_map->head->next; map->tail->next != NULL
                                                                                       ; map->tail = map->tail->next){
-        Node next_node = malloc(sizeof(*next_node)); //*
+        Node next_node = malloc(sizeof(*next_node));
         if (next_node == NULL){
             mapDestroy(new_map);
             return NULL;
         }
-        new_map->tail = next_node; // The next step// //delete new_map->tail->next
+        new_map->tail = next_node;
         new_map->tail->mapKeyElement = map->key_copy(map->tail->mapKeyElement);
         new_map->tail->mapDataElement = map->data_copy(map->tail->mapDataElement);
         new_map->tail->next = NULL;
@@ -93,7 +91,7 @@ Map mapCopy(Map map){
         mapDestroy(new_map);
         return NULL;
     }
-    new_map->tail = next_node; // The next step// //delete new_map->tail->next
+    new_map->tail = next_node;
     new_map->tail->mapKeyElement = map->key_copy(map->tail->mapKeyElement);
     new_map->tail->mapDataElement = map->data_copy(map->tail->mapDataElement);
     new_map->tail->next = NULL;
@@ -127,7 +125,7 @@ MapResult createNewNode(Node *new_node,MapKeyElement keyElement, MapDataElement 
     }else{
         (*new_node)->mapDataElement = map->data_copy (dataElement);
         (*new_node)->mapKeyElement = map->key_copy(keyElement);
-        (*new_node)->next =NULL;
+        (*new_node)->next = NULL;
     }
     return MAP_SUCCESS;
 }
@@ -136,10 +134,6 @@ void addNewNodeAfterNode(Node new_node ,Node previousNode) {
     previousNode->next =new_node;
     new_node->next =  temp;
 }
-/*void addNewNodeBeforeNode(Node new_node ,Map map) { // add new node at the beginning os the list
-    new_node->next =  map->head->next;
-    map->head =new_node;
-}*/
 MapResult mapPut(Map map, MapKeyElement keyElement, MapDataElement dataElement) {
     Node new_node=NULL;
     if(map->head == NULL){                    //first node in the list
@@ -159,8 +153,7 @@ MapResult mapPut(Map map, MapKeyElement keyElement, MapDataElement dataElement) 
             map->tail->mapKeyElement = map->key_copy(keyElement);
             return MAP_SUCCESS;
         }
-        if (map->compair_key(keyElement ,map->tail->mapKeyElement ) < 0) {//middle before this object?
-            int p =map->compair_key(map->tail->mapKeyElement, keyElement);
+        if (map->compair_key(keyElement ,map->tail->mapKeyElement ) < 0) {//middle before this object
             if (createNewNode(&new_node, keyElement, dataElement,map) == MAP_OUT_OF_MEMORY) {
                 return MAP_OUT_OF_MEMORY;
             } else {
@@ -183,53 +176,12 @@ MapResult mapPut(Map map, MapKeyElement keyElement, MapDataElement dataElement) 
         }
 }
 
-
-
-/*
-MapResult mapPut(Map map, MapKeyElement keyElement, MapDataElement dataElement) {
-    for (map->tail = map->head; map->tail->next; map->tail = map->tail->next) {
-        if (map->compair_key(map->tail->next->mapKeyElement, keyElement) == 0) {
-            map->tail->next->mapDataElement = dataElement;
-            map->tail->next->mapKeyElement = keyElement;
-            return MAP_SUCCESS;
-        }
-        if (map->compair_key(map->tail->next->mapKeyElement, keyElement) < 0) {
-            Node new_node = malloc(sizeof(Node));
-            if (new_node == NULL) {
-                return MAP_OUT_OF_MEMORY;
-            }
-            map->counter++;
-            new_node->next = map->tail->next;
-            new_node->mapDataElement = dataElement;
-            new_node->mapKeyElement = keyElement;
-            map->tail->next = new_node;
-            return MAP_SUCCESS;
-        }
-        if (map->compair_key(map->tail->mapKeyElement, keyElement) > 0 &&
-            map->tail->next == NULL){
-            Node new_node = malloc(sizeof(Node));
-            if (new_node == NULL) {
-                return MAP_OUT_OF_MEMORY;
-            }
-            map->counter++;
-            new_node->next = NULL;
-            new_node->mapDataElement = dataElement;
-            new_node->mapKeyElement = keyElement;
-            map->tail->next = new_node;
-            return MAP_SUCCESS;
-
-        }
-    }
-}
-
-*/
 MapDataElement mapGet(Map map, MapKeyElement keyElement){
     for (map->tail = map->head; map->tail != NULL ; map->tail = map->tail->next) {
         if (map->compair_key(map->tail->mapKeyElement, keyElement) == 0){
             return map->tail->mapDataElement;
         }
     }
-
     return NULL;
 }
 
@@ -268,22 +220,15 @@ MapKeyElement mapGetNext(Map map){
 }
 
 MapResult mapClear(Map map){
-    while( map->head != NULL)
+    while(map->head != NULL)
     {
         Node tmp = map->head;
-        map->head=map->head->next;
+        map->head = map->head->next;
         map->free_data(tmp->mapDataElement);
         map->free_key(tmp->mapKeyElement);
     }
-    map->free_data( map->head->mapDataElement);
-    map->free_key( map->head->mapKeyElement);
-//    for (map->tail = map->head; map->tail->next != NULL; map->tail = map->tail->next) {
-//        Node tmp = map->head->next;
-//        map->free_data(map->tail->next->mapDataElement);
-//        map->free_key(map->tail->next->mapKeyElement);
-//        free(map->tail->next);                             //free key and data element
-//        /*free(map->head);*/
-//        map->head = tmp;
-//    }
+    map->free_data(map->head->mapDataElement);
+    map->free_key(map->head->mapKeyElement);
+
     return MAP_SUCCESS;
 }
