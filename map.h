@@ -50,10 +50,8 @@ typedef enum MapResult_t {
 
 /** Data element data type for map container */
 typedef void *MapDataElement;
-typedef void *MapDataElement;
 
 /** Key element data type for map container */
-typedef void *MapKeyElement;
 typedef void *MapKeyElement;
 
 /** Type of function for copying a data element of the map */

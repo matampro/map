@@ -160,7 +160,7 @@ MapResult mapPut(Map map, MapKeyElement keyElement, MapDataElement dataElement) 
             return MAP_SUCCESS;
         }
         if (map->compair_key(keyElement ,map->tail->mapKeyElement ) < 0) {//middle before this object?
-            int p =map->compair_key(map->tail->mapKeyElement, keyElement);
+            //int p =map->compair_key(map->tail->mapKeyElement, keyElement);
             if (createNewNode(&new_node, keyElement, dataElement,map) == MAP_OUT_OF_MEMORY) {
                 return MAP_OUT_OF_MEMORY;
             } else {
@@ -181,6 +181,7 @@ MapResult mapPut(Map map, MapKeyElement keyElement, MapDataElement dataElement) 
                 return MAP_SUCCESS;
             }
         }
+        return MAP_OUT_OF_MEMORY;  //should not get here
 }
 
 
@@ -246,9 +247,10 @@ MapResult mapRemove(Map map, MapKeyElement keyElement) {
             map->counter--;
         }
     }
-    if (flag == 0){
+  /*  if (flag == 0){
         return MAP_ITEM_DOES_NOT_EXIST;
-    }
+    }*/
+    return MAP_ITEM_DOES_NOT_EXIST;
 }
 
 MapKeyElement mapGetFirst(Map map) {
