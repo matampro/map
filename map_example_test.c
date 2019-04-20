@@ -61,6 +61,7 @@ bool testMapAddAndSize() {
         char j = (char) i;
         ++j;
         ASSERT_TEST(mapPut(map, &i, &j) == MAP_SUCCESS);
+      //  printf("i %d map %d",i,mapGetSize(map));
         ASSERT_TEST(mapGetSize(map) == i);
     }
     mapDestroy(map);
@@ -114,7 +115,8 @@ bool testIterator() {
 
     int i = 1;
     MAP_FOREACH(int *, iter, map) {
-      ASSERT_TEST(*iter == i);
+
+     ASSERT_TEST(*iter == i);
       i++;
     }
 
