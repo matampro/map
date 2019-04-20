@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Ayala/Documents/GitHub/map/map.c
+stdio.h
+-
+map.h
+C:/Users/Ayala/Documents/GitHub/map/map.h
+stdlib.h
+-
+memory.h
+-
+
+C:/Users/Ayala/Documents/GitHub/map/map.h
+stdbool.h
+-
+
+C:/Users/Ayala/Documents/GitHub/map/map_example_test.c
+test_utilities.h
+C:/Users/Ayala/Documents/GitHub/map/test_utilities.h
+stdlib.h
+-
+map.h
+C:/Users/Ayala/Documents/GitHub/map/map.h
+
+C:/Users/Ayala/Documents/GitHub/map/test_utilities.h
+stdbool.h
+-
+stdio.h
+-
+
