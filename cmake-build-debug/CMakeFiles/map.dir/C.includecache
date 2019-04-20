@@ -6,17 +6,31 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/Ayala/Documents/GitHub/map/map.c
+E:/Documents/studies/mtm/hw-1/map/map.c
 stdio.h
 -
 map.h
-C:/Users/Ayala/Documents/GitHub/map/map.h
+E:/Documents/studies/mtm/hw-1/map/map.h
 stdlib.h
 -
 memory.h
 -
 
-C:/Users/Ayala/Documents/GitHub/map/map.h
+E:/Documents/studies/mtm/hw-1/map/map.h
 stdbool.h
+-
+
+E:/Documents/studies/mtm/hw-1/map/map_example_test.c
+test_utilities.h
+E:/Documents/studies/mtm/hw-1/map/test_utilities.h
+stdlib.h
+-
+map.h
+E:/Documents/studies/mtm/hw-1/map/map.h
+
+E:/Documents/studies/mtm/hw-1/map/test_utilities.h
+stdbool.h
+-
+stdio.h
 -
 

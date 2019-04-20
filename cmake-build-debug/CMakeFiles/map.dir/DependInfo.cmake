@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "C:/Users/Ayala/Documents/GitHub/map/map.c" "C:/Users/Ayala/Documents/GitHub/map/cmake-build-debug/CMakeFiles/map.dir/map.c.obj"
-  "C:/Users/Ayala/Documents/GitHub/map/map_example_test.c" "C:/Users/Ayala/Documents/GitHub/map/cmake-build-debug/CMakeFiles/map.dir/map_example_test.c.obj"
+  "E:/Documents/studies/mtm/hw-1/map/map.c" "E:/Documents/studies/mtm/hw-1/map/cmake-build-debug/CMakeFiles/map.dir/map.c.obj"
+  "E:/Documents/studies/mtm/hw-1/map/map_example_test.c" "E:/Documents/studies/mtm/hw-1/map/cmake-build-debug/CMakeFiles/map.dir/map_example_test.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

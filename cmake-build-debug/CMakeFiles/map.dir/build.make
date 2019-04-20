@@ -42,10 +42,10 @@ RM = "C:\Program Files\JetBrains\CLion 2018.3.4\bin\cmake\win\bin\cmake.exe" -E 
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\Ayala\Documents\GitHub\map
+CMAKE_SOURCE_DIR = E:\Documents\studies\mtm\hw-1\map
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\Ayala\Documents\GitHub\map\cmake-build-debug
+CMAKE_BINARY_DIR = E:\Documents\studies\mtm\hw-1\map\cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/map.dir/depend.make
@@ -58,29 +58,29 @@ include CMakeFiles/map.dir/flags.make
 
 CMakeFiles/map.dir/map.c.obj: CMakeFiles/map.dir/flags.make
 CMakeFiles/map.dir/map.c.obj: ../map.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Ayala\Documents\GitHub\map\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/map.dir/map.c.obj"
-	C:\TDM-GCC-64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\map.dir\map.c.obj   -c C:\Users\Ayala\Documents\GitHub\map\map.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\Documents\studies\mtm\hw-1\map\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/map.dir/map.c.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\map.dir\map.c.obj   -c E:\Documents\studies\mtm\hw-1\map\map.c
 
 CMakeFiles/map.dir/map.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/map.dir/map.c.i"
-	C:\TDM-GCC-64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\Ayala\Documents\GitHub\map\map.c > CMakeFiles\map.dir\map.c.i
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E E:\Documents\studies\mtm\hw-1\map\map.c > CMakeFiles\map.dir\map.c.i
 
 CMakeFiles/map.dir/map.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/map.dir/map.c.s"
-	C:\TDM-GCC-64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\Ayala\Documents\GitHub\map\map.c -o CMakeFiles\map.dir\map.c.s
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S E:\Documents\studies\mtm\hw-1\map\map.c -o CMakeFiles\map.dir\map.c.s
 
 CMakeFiles/map.dir/map_example_test.c.obj: CMakeFiles/map.dir/flags.make
 CMakeFiles/map.dir/map_example_test.c.obj: ../map_example_test.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Ayala\Documents\GitHub\map\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/map.dir/map_example_test.c.obj"
-	C:\TDM-GCC-64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\map.dir\map_example_test.c.obj   -c C:\Users\Ayala\Documents\GitHub\map\map_example_test.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\Documents\studies\mtm\hw-1\map\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/map.dir/map_example_test.c.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\map.dir\map_example_test.c.obj   -c E:\Documents\studies\mtm\hw-1\map\map_example_test.c
 
 CMakeFiles/map.dir/map_example_test.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/map.dir/map_example_test.c.i"
-	C:\TDM-GCC-64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\Ayala\Documents\GitHub\map\map_example_test.c > CMakeFiles\map.dir\map_example_test.c.i
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E E:\Documents\studies\mtm\hw-1\map\map_example_test.c > CMakeFiles\map.dir\map_example_test.c.i
 
 CMakeFiles/map.dir/map_example_test.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/map.dir/map_example_test.c.s"
-	C:\TDM-GCC-64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\Ayala\Documents\GitHub\map\map_example_test.c -o CMakeFiles\map.dir\map_example_test.c.s
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S E:\Documents\studies\mtm\hw-1\map\map_example_test.c -o CMakeFiles\map.dir\map_example_test.c.s
 
 # Object files for target map
 map_OBJECTS = \
@@ -96,7 +96,7 @@ map.exe: CMakeFiles/map.dir/build.make
 map.exe: CMakeFiles/map.dir/linklibs.rsp
 map.exe: CMakeFiles/map.dir/objects1.rsp
 map.exe: CMakeFiles/map.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Ayala\Documents\GitHub\map\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable map.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=E:\Documents\studies\mtm\hw-1\map\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable map.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\map.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -109,6 +109,6 @@ CMakeFiles/map.dir/clean:
 .PHONY : CMakeFiles/map.dir/clean
 
 CMakeFiles/map.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\Ayala\Documents\GitHub\map C:\Users\Ayala\Documents\GitHub\map C:\Users\Ayala\Documents\GitHub\map\cmake-build-debug C:\Users\Ayala\Documents\GitHub\map\cmake-build-debug C:\Users\Ayala\Documents\GitHub\map\cmake-build-debug\CMakeFiles\map.dir\DependInfo.cmake --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" E:\Documents\studies\mtm\hw-1\map E:\Documents\studies\mtm\hw-1\map E:\Documents\studies\mtm\hw-1\map\cmake-build-debug E:\Documents\studies\mtm\hw-1\map\cmake-build-debug E:\Documents\studies\mtm\hw-1\map\cmake-build-debug\CMakeFiles\map.dir\DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/map.dir/depend
 
